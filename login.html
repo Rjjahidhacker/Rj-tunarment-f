@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Login - RJ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo"><img src="assets/logo-placeholder.png"></div>
+    <nav class="nav"><a href="index.html">Home</a><a href="matches.html">Matches</a><a href="teams.html">Buy Team</a></nav>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h3>Create Account</h3>
+      <input id="r_user" class="input" placeholder="Username">
+      <input id="r_pass" class="input" placeholder="Password" type="password">
+      <button class="button" onclick="register()">Register</button>
+    </div>
+<div class="card" style="margin-top:12px">
+      <h3>Login</h3>
+      <input id="l_user" class="input" placeholder="Username">
+      <input id="l_pass" class="input" placeholder="Password" type="password">
+      <button class="button" onclick="login()">Login</button>
+      <p id="loginMsg" class="small"></p>
+    </div>
+  </main>
+
+<script>
+function register(){
+  const u=document.getElementById('r_user').value.trim();
+  const p=document.getElementById('r_pass').value;
+  if(!u||!p){alert('সব ফিল্ড পূরণ করো');return;}
+  localStorage.setItem('user_'+u, p);
+  alert('Registration successful');
+}
+function login(){
+  const u=document.getElementById('l_user').value.trim();
+  const p=document.getElementById('l_pass').value;
+  if(localStorage.getItem('user_'+u)===p){
+    localStorage.setItem('currentUser', u);
+    document.getElementById('loginMsg').innerText='Login success';
+    setTimeout(()=> location.href='teams.html',500);
+  } else {
+document.getElementById('loginMsg').innerText='Login failed';
+  }
+}
+</script>
+</body>
+</html>
