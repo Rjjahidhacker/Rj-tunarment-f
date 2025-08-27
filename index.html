@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+
+<body>
+  
+</body>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>RJ E-SPORTS - Lookalike</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo">
+      <img src="assets/logo-placeholder.png" alt="logo">
+      <div>
+        <div class="site-title">RJ E-SPORTS</div>
+        <div class="small">Free Fire · Tournaments · Matches</div>
+      </div>
+    </div>
+<nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="matches.html">Matches</a>
+      <a href="teams.html">Buy Team</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <img src="assets/hero-placeholder.png" alt="hero">
+      <div>
+        <h2>Weekly Free Fire Tournaments</h2>
+        <p class="small">Join now — prize pools announce every week. Register your team and pay via Bkash/Nagad.</p>
+        <a class="button" href="matches.html">View Matches</a>
+      </div>
+    </section>
+    <div class="grid">
+      <div>
+        <h3 style="margin-top:18px">Latest News & Matches</h3>
+        <div class="news-list" id="newsList">
+          <!-- JS will inject cards -->
+        </div>
+      </div>
+
+      <aside class="sidebar">
+        <div class="card">
+          <h3>Quick Buy Team</h3>
+          <p class="small">Team Price: 200 Tk</p>
+          <a class="button" href="teams.html">Buy Now</a>
+        </div>
+
+        <div class="card" style="margin-top:12px">
+          <h4>Contact</h4>
+          <p class="small">WhatsApp: +8801319940144</p>
+          <p class="small">Email: jahid8899bh@gmail.com</p>
+        </div>
+      </aside>
+    </div>
+<div class="footer">© RJ E-SPORTS lookalike — images are placeholders</div>
+  </main>
+
+<script>
+const sampleNews = [
+  {title:"SOLO BATTLE - Aug 22",meta:"Prize: 900 tk",desc:"Register your duo team before 8PM."},
+  {title:"Squad Match - Aug 20",meta:"Prize: 860 tk",desc:"Top 3 teams will get reward."},
+  {title:"Special Event",meta:"Live Stream",desc:"Champions special interview."}
+];
+const list = document.getElementById('newsList');
+sampleNews.forEach(n=>{
+  const el = document.createElement('div'); el.className='card';
+  el.innerHTML = `<h3>${n.title}</h3><div class="meta">${n.meta}</div><p>${n.desc}</p><a class="button" href="matches.html">Details</a>`;
+  list.appendChild(el);
+});
+</script>
+</body>
+</html>
