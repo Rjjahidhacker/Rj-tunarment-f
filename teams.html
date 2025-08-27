@@ -1,0 +1,87 @@
+!DOCTYPE html>
+<html>
+<head>
+  <title>Buy Team - RJ E-Sport's</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Buy Your Team</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="login.html">Login</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <h2>Buy Team</h2>
+      <p>Team Price: 20 Taka</p>
+      <p>Payment Options: Bkash / Nagad</p>
+
+      <h3>Payment Form</h3>
+      <input type="text" placeholder="Your Name">
+      <input type="text" placeholder="Bkash/Nagad Number ">
+      <input type="text" placeholder="Transaction ID">
+      <button>Submit</button>
+    </div>
+  </div>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Buy Team - RJ</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="logo"><img src="assets/logo-placeholder.png"></div>
+    <nav class="nav"><a href="index.html">Home</a><a href="matches.html">Matches</a><a href="login.html">Login</a></nav>
+  </header>
+
+  <main class="container">
+    <div class="card">
+      <h2>Buy Team</h2>
+      <p class="small">Price: <strong>200 Tk</strong> — Payment: Bkash / Nagad</p>
+
+      <label class="small">Your Username (Login required)</label>
+      <input id="user" class="input" placeholder="Your username">
+
+      <label class="small">Payment Number (Sender)</label>
+      <input id="payNumber" class="input" placeholder="017*******">
+<label class="small">Transaction ID (TrxID)</label>
+      <input id="trxID" class="input" placeholder="Enter Transaction ID">
+
+      <button class="button" onclick="submitTrx()">Verify & Buy</button>
+      <p id="msg" class="small"></p>
+    </div>
+  </main>
+
+<script>
+function submitTrx(){
+  const user = document.getElementById('user').value.trim();
+  const payNumber = document.getElementById('payNumber').value.trim();
+  const trx = document.getElementById('trxID').value.trim();
+  if(!user || !payNumber || !trx){ alert('সব ফিল্ড পূরণ করো'); return; }
+
+  // POST to backend/verify.php — backend must implement real bkash check
+  fetch('backend/verify.php', {
+    method:'POST',
+    headers:{'Content-Type':'application/x-www-form-urlencoded'},
+    body:`username=${encodeURIComponent(user)}&payNumber=${encodeURIComponent(payNumber)}&trxID=${encodeURIComponent(trx)}`
+  })
+.then(r=>r.json())
+  .then(data=>{
+    if(data.status === 'Success'){
+      document.getElementById('msg').innerText = '✅ Payment verified — Team added to your account';
+    } else {
+      document.getElementById('msg').innerText = '❌ Verification failed: ' + (data.error||'Invalid trx');
+    }
+  }).catch(e=>{
+    document.getElementById('msg').innerText = 'Server connection failed';
+  });
+}
+</script>
+</body>
+</html>
