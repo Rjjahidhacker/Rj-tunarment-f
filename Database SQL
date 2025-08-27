@@ -1,0 +1,18 @@
+CREATE DATABASE rj_esport;
+
+USE rj_esport;
+
+CREATE TABLE matches (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    match_name VARCHAR(100),
+    match_date DATETIME
+);
+
+CREATE TABLE players (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    match_id INT,
+    player_name VARCHAR(100),
+    team_name VARCHAR(100),
+    slot_number INT,
+    FOREIGN KEY (match_id) REFERENCES matches(id) ON DELETE CASCADE
+);
